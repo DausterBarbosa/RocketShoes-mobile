@@ -1,4 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+
+import {FlatList} from "react-native";
+
+import Api from "../../services/Api";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -15,24 +19,49 @@ import {
     ButtonLabel
 } from "./styles";
 
+interface Product{
+    id: number,
+    title: string,
+    price: number,
+    image: string
+}
+
 function Home(){
+    const [products, setProducts] = useState<Product[]>([]);
+
+    useEffect(() => {
+        async function getProducts(){
+            const request = await Api.get("/products");
+
+            setProducts(request.data);
+        }
+
+        getProducts();
+    }, []);
+
     return (
         <Container>
-            <Item>
-                <Image source={{uri: `https://static.netshoes.com.br/produtos/tenis-nike-revolution-5-masculino/26/HZM-1731-026/HZM-1731-026_zoom1.jpg?ts=1571078789&`}}/>
-                <ItemInfo>
-                    <ItemName>Tênis de caminhada leve e confortável.</ItemName>
-                    <ItemPrice>R$ 122,00</ItemPrice>
+            <FlatList
+                data={products}
+                keyExtractor={item => String(item.id)}
+                renderItem={({item}) => (
+                    <Item>
+                    <Image source={{uri: `${item.image}`}}/>
+                    <ItemInfo>
+                        <ItemName>{item.title}</ItemName>
+                        <ItemPrice>{item.price}</ItemPrice>
 
-                    <Button>
-                        <ButtonCart>
-                            <Icon name="add-shopping-cart" size={25} color="#FFF"/>
-                            <Quant>1</Quant>
-                        </ButtonCart>
-                        <ButtonLabel>ADICIONAR</ButtonLabel>
-                    </Button>
-                </ItemInfo>
-            </Item>
+                        <Button>
+                            <ButtonCart>
+                                <Icon name="add-shopping-cart" size={25} color="#FFF"/>
+                                <Quant>1</Quant>
+                            </ButtonCart>
+                            <ButtonLabel>ADICIONAR</ButtonLabel>
+                        </Button>
+                    </ItemInfo>
+                </Item>
+                )}
+            />
         </Container>
     );
 }

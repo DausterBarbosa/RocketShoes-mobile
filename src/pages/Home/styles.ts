@@ -14,6 +14,7 @@ export const Item = styled.View`
     border-radius: 7px;
     overflow: hidden;
     padding: 10px;
+    margin-bottom: 10px;
 `;
 
 export const Image = styled.Image`
