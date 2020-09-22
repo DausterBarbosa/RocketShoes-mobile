@@ -2,8 +2,8 @@ import React from "react";
 
 import {createStackNavigator} from "@react-navigation/stack";
 
-import Home from "./pages/Cart";
-import Cart from "./pages/Home";
+import Home from "./pages/Home";
+import Cart from "./pages/Cart";
 
 const Stack = createStackNavigator();
 
