@@ -27,7 +27,9 @@ export const ItemInfo = styled.View`
     margin-left: 10px;
 `;
 
-export const ItemName = styled.Text`
+export const ItemName = styled.Text.attrs(props => ({
+    numberOfLines: 2
+}))`
     font-size: 15px;
 `;
 

@@ -42,6 +42,7 @@ function Home(){
     return (
         <Container>
             <FlatList
+                showsVerticalScrollIndicator={false}
                 data={products}
                 keyExtractor={item => String(item.id)}
                 renderItem={({item}) => (
