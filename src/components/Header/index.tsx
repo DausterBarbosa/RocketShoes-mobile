@@ -1,6 +1,6 @@
 import React from "react";
 
-import {BorderlessButton} from "react-native-gesture-handler";
+import {TouchableOpacity} from "react-native";
 
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -12,12 +12,12 @@ function Header(){
     return (
         <HeaderContainer>
             <Logo source={LogoImage}/>
-            <BorderlessButton onPress={() => {}}>
+            <TouchableOpacity onPress={() => {}}>
                 <CartInfo>
                     <Icon name="shopping-basket" size={25} color="#FFF"/>
                     <CartQuant>0</CartQuant>
                 </CartInfo>
-            </BorderlessButton>
+            </TouchableOpacity>
         </HeaderContainer>
     );
 }
