@@ -12,7 +12,6 @@ function App(){
     return (
         <NavigationContainer>
             <StatusBar backgroundColor={"#191920"}/>
-            <Header/>
             <Routes/>
         </NavigationContainer>
     );
