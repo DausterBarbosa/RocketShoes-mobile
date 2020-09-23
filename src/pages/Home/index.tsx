@@ -4,6 +4,8 @@ import {FlatList} from "react-native";
 
 import Api from "../../services/Api";
 
+import {formatPrice} from "../../utils/format";
+
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 import {
@@ -23,7 +25,8 @@ interface Product{
     id: number,
     title: string,
     price: number,
-    image: string
+    image: string,
+    priceFormatted?: string
 }
 
 function Home(){
@@ -33,7 +36,12 @@ function Home(){
         async function getProducts(){
             const request = await Api.get("/products");
 
-            setProducts(request.data);
+            const newProducts = request.data.map((product:Product) => ({
+                ...product,
+                priceFormatted: formatPrice(product.price)
+            }));
+
+            setProducts(newProducts);
         }
 
         getProducts();
@@ -50,7 +58,7 @@ function Home(){
                     <Image source={{uri: `${item.image}`}}/>
                     <ItemInfo>
                         <ItemName>{item.title}</ItemName>
-                        <ItemPrice>{item.price}</ItemPrice>
+                        <ItemPrice>{item.priceFormatted}</ItemPrice>
 
                         <Button>
                             <ButtonCart>
