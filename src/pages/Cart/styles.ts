@@ -1,5 +1,7 @@
 import styled from "styled-components/native";
 
+import {RectButton} from "react-native-gesture-handler";
+
 export const Container = styled.View`
     background: #191920;
     flex: 1;
@@ -69,3 +71,31 @@ export const SubTotal = styled.Text`
     font-size: 20px;
 `;
 
+export const FooterCartContainer = styled.View`
+    align-items: center;
+    margin-top: 30px;
+`;
+
+export const TotalText = styled.Text`
+    color: #999;
+    font-size: 20px;
+`;
+
+export const TotalPrice = styled.Text`
+    font-weight: bold;
+    font-size: 30px;
+`;
+
+export const Button = styled(RectButton)`
+    background: #7159c1;
+    width: 100%;
+    border-radius: 7px;
+    margin-top: 30px;
+`;
+
+export const ButtonLabel = styled.Text`
+    color: #FFF;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+`;

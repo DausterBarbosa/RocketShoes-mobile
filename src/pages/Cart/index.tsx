@@ -16,7 +16,12 @@ import {
     FooterItem,
     Quant,
     QuantItem,
-    SubTotal
+    SubTotal,
+    FooterCartContainer,
+    TotalText,
+    TotalPrice,
+    Button,
+    ButtonLabel
 } from "./styles";
 
 function Cart(){
@@ -55,6 +60,13 @@ function Cart(){
                         <SubTotal>R$555,90</SubTotal>
                     </FooterItem>
                 </Item>
+                <FooterCartContainer>
+                    <TotalText>TOTAL</TotalText>
+                    <TotalPrice>R$567,99</TotalPrice>
+                    <Button>
+                        <ButtonLabel>FINALIZAR PEDIDO</ButtonLabel>
+                    </Button>
+                </FooterCartContainer>
             </CartContainer>
         </Container>
     );
