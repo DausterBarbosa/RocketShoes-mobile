@@ -51,7 +51,7 @@ export const ButtonCart = styled.View`
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    padding: 10px;
+    padding: 7px;
     background: rgba(0,0,0,0.1);
     border-top-left-radius: 7px;
     border-bottom-left-radius: 7px;
