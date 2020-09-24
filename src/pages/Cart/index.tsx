@@ -38,7 +38,7 @@ function Cart(){
     useEffect(() => {
         function calculateTotal(){
             const totalProducts = cartItems.reduce((acumulate, product) => {
-                return acumulate + (product.price * product.amount);
+                return acumulate + (product.price * product.amount!);
             }, 0);
             
             setTotal(formatPrice(totalProducts));
