@@ -1,21 +1,24 @@
 import React, {createContext, useState} from "react";
 
+import {formatPrice} from "../utils/format";
+
 interface CartContextProps {
     addToCart(item:Product): void;
     removeToCart(item:Product): void;
     deleteToCart(item:Product): void;
-    cartItems: Product[]
+    cartItems: Product[];
 }
 
 const CartContext = createContext<CartContextProps>({} as CartContextProps);
 
 interface Product{
-    id: number,
-    title: string,
-    price: number,
-    image: string,
-    priceFormatted?: string
-    amount: number
+    id: number;
+    title: string;
+    price: number;
+    image: string;
+    priceFormatted?: string;
+    amount: number;
+    subTotal?: string;
 }
 
 export const Cart:React.FC = ({children}) => {
@@ -27,9 +30,11 @@ export const Cart:React.FC = ({children}) => {
         if(product !== -1){
             cartItems[product].amount += 1;
 
+            cartItems[product].subTotal = formatPrice(cartItems[product].amount * cartItems[product].price);
+
             setCartItems([...cartItems]);
         }else{
-            setCartItems([...cartItems, {...item, amount: 1}])
+            setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}])
         }
     }
 
@@ -38,6 +43,8 @@ export const Cart:React.FC = ({children}) => {
 
         if(cartItems[product].amount !== 1){
             cartItems[product].amount -= 1;
+
+            cartItems[product].subTotal = formatPrice(cartItems[product].amount * cartItems[product].price);
 
             setCartItems([...cartItems]);
         }

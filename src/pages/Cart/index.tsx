@@ -65,7 +65,7 @@ function Cart(){
                                         />
                                     </BorderlessButton>
                                 </Quant>
-                                <SubTotal>R$555,90</SubTotal>
+                                <SubTotal>{item.subTotal}</SubTotal>
                             </FooterItem>
                         </Item>
                     ))}
