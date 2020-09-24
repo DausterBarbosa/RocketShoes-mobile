@@ -29,7 +29,7 @@ import {
 } from "./styles";
 
 function Cart(){
-    const {cartItems} = useContext(CartContext);
+    const {cartItems, addToCart, removeToCart} = useContext(CartContext);
 
     return (
         <Container>
@@ -49,7 +49,7 @@ function Cart(){
                             </ItemContainer>
                             <FooterItem>
                                 <Quant>
-                                    <BorderlessButton>
+                                    <BorderlessButton onPress={() => removeToCart(item)}>
                                         <Icon
                                             name="remove-circle-outline"
                                             color="#7159c1"
@@ -57,7 +57,7 @@ function Cart(){
                                         />
                                     </BorderlessButton>
                                     <QuantItem>{item.amount}</QuantItem>
-                                    <BorderlessButton>
+                                    <BorderlessButton onPress={() => addToCart(item)}>
                                         <Icon
                                             name="add-circle-outline"
                                             color="#7159c1"
