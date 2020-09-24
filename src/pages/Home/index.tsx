@@ -31,10 +31,28 @@ interface Product{
     priceFormatted?: string
 }
 
+interface QuantProps {
+    [id:number]:number;
+}
+
 function Home(){
-    const {addToCart} = useContext(CartContext);
+    const {addToCart, cartItems} = useContext(CartContext);
 
     const [products, setProducts] = useState<Product[]>([]);
+    const [quants, setQuants] = useState<QuantProps>({})
+
+    useEffect(() => {
+        function quantItem(){
+            const quantItems = cartItems.reduce((accumulate, product) => ({
+                ...accumulate,
+                [product.id] : product.amount
+            }), {});
+
+            setQuants(quantItems);
+        }
+
+        quantItem();
+    }, [cartItems]);
 
     useEffect(() => {
         async function getProducts(){
@@ -67,7 +85,7 @@ function Home(){
                         <Button onPress={() => addToCart(item)}>
                             <ButtonCart>
                                 <Icon name="add-shopping-cart" size={25} color="#FFF"/>
-                                <Quant>1</Quant>
+                                <Quant>{quants[item.id] || 0}</Quant>
                             </ButtonCart>
                             <ButtonLabel>ADICIONAR</ButtonLabel>
                         </Button>
