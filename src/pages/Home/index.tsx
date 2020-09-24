@@ -1,4 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+
+import CartContext from "../../Context/CartContext";
 
 import {FlatList} from "react-native";
 
@@ -30,6 +32,8 @@ interface Product{
 }
 
 function Home(){
+    const {addToCart} = useContext(CartContext);
+
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -60,7 +64,7 @@ function Home(){
                         <ItemName>{item.title}</ItemName>
                         <ItemPrice>{item.priceFormatted}</ItemPrice>
 
-                        <Button>
+                        <Button onPress={() => addToCart(item)}>
                             <ButtonCart>
                                 <Icon name="add-shopping-cart" size={25} color="#FFF"/>
                                 <Quant>1</Quant>

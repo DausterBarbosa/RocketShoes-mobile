@@ -4,15 +4,17 @@ import {StatusBar} from "react-native";
 
 import {NavigationContainer} from "@react-navigation/native";
 
-import Header from "./components/Header";
-
 import Routes from "./routes";
+
+import {Cart} from "./Context/CartContext";
 
 function App(){
     return (
         <NavigationContainer>
             <StatusBar backgroundColor={"#191920"}/>
-            <Routes/>
+            <Cart>
+                <Routes/>
+            </Cart>
         </NavigationContainer>
     );
 }
