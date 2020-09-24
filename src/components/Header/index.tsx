@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useContext} from "react";
+
+import CartContext from "../../Context/CartContext";
 
 import {StackNavigationProp} from "@react-navigation/stack";
 
@@ -15,13 +17,15 @@ interface HeaderProps{
 }
 
 const Header:React.FC<HeaderProps> = ({navigation}) =>{
+    const {cartItems} = useContext(CartContext);
+
     return (
         <HeaderContainer>
             <Logo source={LogoImage}/>
             <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
                 <CartInfo>
                     <Icon name="shopping-basket" size={25} color="#FFF"/>
-                    <CartQuant>0</CartQuant>
+                    <CartQuant>{cartItems.length}</CartQuant>
                 </CartInfo>
             </TouchableOpacity>
         </HeaderContainer>
