@@ -17,7 +17,7 @@ interface Product{
     price: number;
     image: string;
     priceFormatted?: string;
-    amount: number;
+    amount?: number;
     subTotal?: string;
 }
 
@@ -28,9 +28,9 @@ export const Cart:React.FC = ({children}) => {
         const product = cartItems.findIndex(product => product.id === item.id);
         
         if(product !== -1){
-            cartItems[product].amount += 1;
+            cartItems[product].amount! += 1;
 
-            cartItems[product].subTotal = formatPrice(cartItems[product].amount * cartItems[product].price);
+            cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
 
             setCartItems([...cartItems]);
         }else{
@@ -42,9 +42,9 @@ export const Cart:React.FC = ({children}) => {
         const product = cartItems.findIndex(product => product.id === item.id);
 
         if(cartItems[product].amount !== 1){
-            cartItems[product].amount -= 1;
+            cartItems[product].amount! -= 1;
 
-            cartItems[product].subTotal = formatPrice(cartItems[product].amount * cartItems[product].price);
+            cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
 
             setCartItems([...cartItems]);
         }
