@@ -1,4 +1,6 @@
-import React, {useContext} from "react";
+import React, {useContext, useState, useEffect} from "react";
+
+import {formatPrice} from "../../utils/format";
 
 import CartContext from "../../Context/CartContext";
 
@@ -30,6 +32,20 @@ import {
 
 function Cart(){
     const {cartItems, addToCart, removeToCart, deleteToCart} = useContext(CartContext);
+
+    const [total, setTotal] = useState("");
+
+    useEffect(() => {
+        function calculateTotal(){
+            const totalProducts = cartItems.reduce((acumulate, product) => {
+                return acumulate + (product.price * product.amount);
+            }, 0);
+            
+            setTotal(formatPrice(totalProducts));
+        }
+
+        calculateTotal();
+    }, [cartItems]);
 
     return (
         <Container>
@@ -71,7 +87,7 @@ function Cart(){
                     ))}
                     <FooterCartContainer>
                         <TotalText>TOTAL</TotalText>
-                        <TotalPrice>R$567,99</TotalPrice>
+                        <TotalPrice>{total}</TotalPrice>
                         <Button>
                             <ButtonLabel>FINALIZAR PEDIDO</ButtonLabel>
                         </Button>
