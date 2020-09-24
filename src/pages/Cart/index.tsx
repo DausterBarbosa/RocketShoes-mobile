@@ -29,7 +29,7 @@ import {
 } from "./styles";
 
 function Cart(){
-    const {cartItems, addToCart, removeToCart} = useContext(CartContext);
+    const {cartItems, addToCart, removeToCart, deleteToCart} = useContext(CartContext);
 
     return (
         <Container>
@@ -43,7 +43,7 @@ function Cart(){
                                     <ItemText>{item.title}</ItemText>
                                     <ItemPrice>{item.priceFormatted}</ItemPrice>
                                 </InfoContainer>
-                                <BorderlessButton>
+                                <BorderlessButton onPress={() => deleteToCart(item)}>
                                     <Icon name="delete-forever" color="#7159c1" size={30}/>
                                 </BorderlessButton>
                             </ItemContainer>
