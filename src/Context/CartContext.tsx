@@ -28,8 +28,6 @@ export const Cart:React.FC = ({children}) => {
         }else{
             setCartItems([...cartItems, {...item, amount: 1}])
         }
-
-        console.log(cartItems);
     }
 
     return (
