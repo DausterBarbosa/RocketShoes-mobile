@@ -2,6 +2,7 @@ import React, {createContext, useState} from "react";
 
 interface CartContextProps {
     addToCart(item:Product): void;
+    cartItems: Product[]
 }
 
 const CartContext = createContext<CartContextProps>({} as CartContextProps);
@@ -31,7 +32,7 @@ export const Cart:React.FC = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={{addToCart}}>
+        <CartContext.Provider value={{addToCart, cartItems}}>
             {children}
         </CartContext.Provider>
     );

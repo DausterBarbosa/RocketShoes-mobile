@@ -34,7 +34,9 @@ export const InfoContainer = styled.View`
     margin-left: 10px;
 `;
 
-export const ItemText = styled.Text`
+export const ItemText = styled.Text.attrs(props => ({
+    numberOfLines: 2
+}))`
     font-size: 15px;
 `;
 
