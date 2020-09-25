@@ -1,5 +1,7 @@
 import React, {useContext, useState, useEffect} from "react";
 
+import Modal from "../../components/Modal";
+
 import {formatPrice} from "../../utils/format";
 
 import CartContext from "../../Context/CartContext";
@@ -33,7 +35,7 @@ import {
 } from "./styles";
 
 function Cart(){
-    const {cartItems, addToCart, removeToCart, deleteToCart} = useContext(CartContext);
+    const {cartItems, addToCart, removeToCart, deleteToCart, showModal} = useContext(CartContext);
 
     const [total, setTotal] = useState("");
 
@@ -109,6 +111,7 @@ function Cart(){
                     </FooterCartContainer>
                 </CartContainer>
             </ScrollView>
+            {showModal && <Modal/>}
         </Container>
     );
 }
