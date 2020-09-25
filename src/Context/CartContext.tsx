@@ -38,7 +38,9 @@ export const Cart:React.FC = ({children}) => {
             if(response.data.amount >= cartItems[product].amount! + 1){
                 cartItems[product].amount! += 1;
 
-                cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
+                cartItems[product].subTotal = formatPrice(
+                    cartItems[product].amount! * cartItems[product].price
+                );
 
                 setCartItems([...cartItems]);
             }else{
@@ -48,7 +50,11 @@ export const Cart:React.FC = ({children}) => {
             const response = await Api.get(`/stock/${item.id}`);
 
             if(response.data.amount >= 1){
-                setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}]);
+                setCartItems([...cartItems, {
+                    ...item,
+                    amount: 1,
+                    subTotal: item.priceFormatted
+                }]);
             }else{
                 setShowModal(true);
             }
@@ -61,7 +67,9 @@ export const Cart:React.FC = ({children}) => {
         if(cartItems[product].amount !== 1){
             cartItems[product].amount! -= 1;
 
-            cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
+            cartItems[product].subTotal = formatPrice(
+                cartItems[product].amount! * cartItems[product].price
+            );
 
             setCartItems([...cartItems]);
         }
@@ -76,7 +84,14 @@ export const Cart:React.FC = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={{addToCart, removeToCart, deleteToCart, cartItems, showModal, setShowModal}}>
+        <CartContext.Provider value={{
+            addToCart,
+            removeToCart,
+            deleteToCart,
+            cartItems,
+            showModal,
+            setShowModal
+        }}>
             {children}
         </CartContext.Provider>
     );
