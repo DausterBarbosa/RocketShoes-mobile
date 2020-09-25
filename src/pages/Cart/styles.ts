@@ -101,3 +101,12 @@ export const ButtonLabel = styled.Text`
     text-align: center;
     padding: 15px;
 `;
+
+export const TextCartEmpty = styled.Text`
+    font-weight: bold;
+    font-size: 25px;
+`;
+
+export const CartEmpty = styled.View`
+    align-items: center;
+`;

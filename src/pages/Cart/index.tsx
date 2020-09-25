@@ -27,7 +27,9 @@ import {
     TotalText,
     TotalPrice,
     Button,
-    ButtonLabel
+    ButtonLabel,
+    TextCartEmpty,
+    CartEmpty
 } from "./styles";
 
 function Cart(){
@@ -46,6 +48,19 @@ function Cart(){
 
         calculateTotal();
     }, [cartItems]);
+
+    if(cartItems.length === 0){
+        return (
+            <Container>
+                <CartContainer>
+                    <CartEmpty>
+                        <Icon name="remove-shopping-cart" size={70} color="#999"/>
+                        <TextCartEmpty>Seu carrinho está vazio.</TextCartEmpty>
+                    </CartEmpty>
+                </CartContainer>
+            </Container>
+        );
+    }
 
     return (
         <Container>
