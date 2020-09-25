@@ -42,7 +42,13 @@ export const Cart:React.FC = ({children}) => {
                 console.log("quantidade não disponivel")
             }
         }else{
-            setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}])
+            const response = await Api.get(`/stock/${item.id}`);
+
+            if(response.data.amount >= 1){
+                setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}]);
+            }else{
+                console.log("Quantidade solicidata nindasd");
+            }
         }
     }
 
