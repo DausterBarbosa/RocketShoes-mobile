@@ -1,5 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 
+import Modal from "../../components/Modal";
+
 import CartContext from "../../Context/CartContext";
 
 import {FlatList} from "react-native";
@@ -93,6 +95,7 @@ function Home(){
                 </Item>
                 )}
             />
+            <Modal/>
         </Container>
     );
 }
