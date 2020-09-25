@@ -9,6 +9,8 @@ interface CartContextProps {
     removeToCart(item:Product): void;
     deleteToCart(item:Product): void;
     cartItems: Product[];
+    showModal: boolean;
+    setShowModal(condition:boolean): void;
 }
 
 const CartContext = createContext<CartContextProps>({} as CartContextProps);
@@ -25,6 +27,7 @@ interface Product{
 
 export const Cart:React.FC = ({children}) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
+    const [showModal, setShowModal] = useState(false);
 
     async function addToCart(item:Product){
         const product = cartItems.findIndex(product => product.id === item.id);
@@ -39,7 +42,7 @@ export const Cart:React.FC = ({children}) => {
 
                 setCartItems([...cartItems]);
             }else{
-                console.log("quantidade não disponivel")
+                setShowModal(true);
             }
         }else{
             const response = await Api.get(`/stock/${item.id}`);
@@ -47,7 +50,7 @@ export const Cart:React.FC = ({children}) => {
             if(response.data.amount >= 1){
                 setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}]);
             }else{
-                console.log("Quantidade solicidata nindasd");
+                setShowModal(true);
             }
         }
     }
@@ -73,7 +76,7 @@ export const Cart:React.FC = ({children}) => {
     }
 
     return (
-        <CartContext.Provider value={{addToCart, removeToCart, deleteToCart, cartItems}}>
+        <CartContext.Provider value={{addToCart, removeToCart, deleteToCart, cartItems, showModal, setShowModal}}>
             {children}
         </CartContext.Provider>
     );

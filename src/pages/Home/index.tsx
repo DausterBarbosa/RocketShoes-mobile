@@ -38,7 +38,7 @@ interface QuantProps {
 }
 
 function Home(){
-    const {addToCart, cartItems} = useContext(CartContext);
+    const {addToCart, cartItems, showModal} = useContext(CartContext);
 
     const [products, setProducts] = useState<Product[]>([]);
     const [quants, setQuants] = useState<QuantProps>({})
@@ -95,7 +95,7 @@ function Home(){
                 </Item>
                 )}
             />
-            <Modal/>
+            {showModal && <Modal/>}
         </Container>
     );
 }
