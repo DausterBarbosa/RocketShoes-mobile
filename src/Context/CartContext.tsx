@@ -1,5 +1,7 @@
 import React, {createContext, useState} from "react";
 
+import Api from "../services/Api";
+
 import {formatPrice} from "../utils/format";
 
 interface CartContextProps {
@@ -24,15 +26,21 @@ interface Product{
 export const Cart:React.FC = ({children}) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
 
-    function addToCart(item:Product){
+    async function addToCart(item:Product){
         const product = cartItems.findIndex(product => product.id === item.id);
-        
+
         if(product !== -1){
-            cartItems[product].amount! += 1;
+            const response = await Api.get(`/stock/${item.id}`);
 
-            cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
+            if(response.data.amount >= cartItems[product].amount! + 1){
+                cartItems[product].amount! += 1;
 
-            setCartItems([...cartItems]);
+                cartItems[product].subTotal = formatPrice(cartItems[product].amount! * cartItems[product].price);
+
+                setCartItems([...cartItems]);
+            }else{
+                console.log("quantidade não disponivel")
+            }
         }else{
             setCartItems([...cartItems, {...item, amount: 1, subTotal: item.priceFormatted}])
         }
