@@ -42,5 +42,5 @@ $ npx react-native start
 $ cd RocketShoes
 
 #Inicie o servidor
-$ json-server database.json
+$ json-server database.json -H SEU_IP_DE_REDE
 ```
