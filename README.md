@@ -2,7 +2,7 @@
 
 <h1>RocketShoes-Mobile:</h1>
 <p>RocketShoes-Mobile é a aplicação mobile nativa da <a href="https://github.com/DausterBarbosa/RocketShoes">RocketShoes</a> para demonstrar o uso da Context API no mobile.</p>
-<h2>Funcionalidades extras:</h2>
+<h2>Funcionalidades:</h2>
 <ul>
   <li>Mostra subtotal do produto individualmente a medida que o mesmo produto vai sendo adicionado ou removido do carrinho.</li>
   <li>Mostra o preço total geral do carrinho.</li>
