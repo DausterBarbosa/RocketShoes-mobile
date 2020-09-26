@@ -13,8 +13,6 @@ interface CartContextProps {
     setShowModal(condition:boolean): void;
 }
 
-const CartContext = createContext<CartContextProps>({} as CartContextProps);
-
 interface Product{
     id: number;
     title: string;
@@ -24,6 +22,8 @@ interface Product{
     amount?: number;
     subTotal?: string;
 }
+
+const CartContext = createContext<CartContextProps>({} as CartContextProps);
 
 export const Cart:React.FC = ({children}) => {
     const [cartItems, setCartItems] = useState<Product[]>([]);
