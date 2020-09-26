@@ -1,4 +1,4 @@
-![RocketShoes](.github/rocketshoes.gif)
+<img width=250px src=".github/rocketshoes.gif"/>
 
 <h1>RocketShoes-Mobile:</h1>
 <p>RocketShoes-Mobile é a aplicação mobile nativa da <a href="https://github.com/DausterBarbosa/RocketShoes">RocketShoes</a> para demonstrar o uso da Context API no mobile.</p>
